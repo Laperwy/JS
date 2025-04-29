@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функции JavaScript</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --primary-color: #ba7ff0;
+            --primary-hover: #8836d3;
+            --secondary-color: #333;
+            --border-color: #444;
+            --input-bg: #2d2d2d;
+            --block-bg: #252525;
+            --highlight: #3a3a3a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+        }
+        
+        .function-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--block-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .function-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4em;
+        }
+        
+        h3 {
+            color: var(--text-color);
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.03);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .reset-btn {
+            background-color: #555 !important;
+        }
+
+        .reset-btn:hover {
+            background-color: #666 !important;
+        }
+        
+        input, select {
+            padding: 8px 12px;
+            margin: 8px 0;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-color);
+            width: 100%;
+            max-width: 300px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+            font-weight: bold;
+        }
+        
+        form {
+            margin-top: 15px;
+        }
+        
+        form div {
+            margin-bottom: 10px;
+        }
+        
+        #heading10 {
+            padding: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 6px;
+            display: inline-block;
+            min-width: 150px;
+            text-align: center;
+        }
+        
+        ::placeholder {
+            color: #aaa;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        #heading10 {
+            transition: all 0.3s ease;
+        }
+        
+        #heading10.changed {
+            animation: pulse 0.5s ease;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Реализация функций на JavaScript</h1>
+
+    <div class="function-block">
+        <h2>Задание 1: Проверка числа больше 18</h2>
+
+        <div>
+            <input type="number" id="input1" placeholder="Введите число">
+            <button onclick="checkIsOver18()">Проверить</button>
+            <div id="result1" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 2: Проверка числа на четность</h2>
+
+        <div>
+            <input type="number" id="input2" placeholder="Введите число">
+            <button onclick="checkIsEven()">Проверить</button>
+            <div id="result2" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 3: Перевернуть строку</h2>
+
+        <div>
+            <input type="text" id="input3" placeholder="Введите строку">
+            <button onclick="reverseInputString()">Перевернуть</button>
+            <div id="result3" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 4: Проверка на палиндром</h2>
+
+        <div>
+            <input type="text" id="input4" placeholder="Введите строку">
+            <button onclick="checkIsPalindrome()">Проверить</button>
+            <div id="result4" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 5: Сумма первой и последней цифры числа</h2>
+
+        <div>
+            <input type="number" id="input5" placeholder="Введите число">
+            <button onclick="calculateSumFirstLastDigits()">Вычислить</button>
+            <div id="result5" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 6: Сумма элементов массива от 0 до 10</h2>
+
+        <div>
+            <input type="text" id="input6" placeholder="Введите числа через запятую (например: 1,5,12,3)">
+            <button onclick="calculateSumBetweenZeroAndTen()">Вычислить</button>
+            <div id="result6" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 7: Получение уникальных чисел из массива</h2>
+
+        <div>
+            <input type="text" id="input7" placeholder="Введите числа через запятую (например: 1,2,2,3,3,4)">
+            <button onclick="getUnique()">Получить уникальные</button>
+            <div id="result7" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 8: Подсчет русских гласных в строке</h2>
+
+        <div>
+            <input type="text" id="input8" placeholder="Введите русский текст">
+            <button onclick="countVowels()">Посчитать гласные</button>
+            <div id="result8" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 9: Сортировка массива чисел</h2>
+
+        <div>
+            <input type="text" id="input9" placeholder="Введите числа через запятую (например: 64,34,25,12,22)">
+            <button onclick="sortArray()">Сортировать</button>
+            <div id="result9" class="result"></div>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 10: Изменение текста заголовка</h2>
+        <p>Нажмите на кнопку, чтобы изменить текст заголовка</p>
+        <div>
+            <h3 id="heading10">Привет, мир</h3>
+            <button onclick="changeHeading()">Изменить текст</button>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 11: Изменение цвета фона</h2>
+        <p>Введите цвет фона (например, red, #ff0000, rgb(255,0,0)) и нажмите кнопку</p>
+        <div>
+            <input type="text" id="colorInput" placeholder="Введите цвет">
+            <button onclick="changeBackgroundColor()">Изменить цвет фона</button>
+            <button onclick="resetBackgroundColor()" class="reset-btn">Сбросить цвет</button>
+        </div>
+    </div>
+
+    <div class="function-block">
+        <h2>Задание 12: Валидация формы</h2>
+        <p>Заполните оба поля ввода и нажмите кнопку "Отправить"</p>
+        <div>
+            <form id="validationForm">
+                <div>
+                    <input type="text" id="field1" placeholder="Поле 1">
+                </div>
+                <div>
+                    <input type="text" id="field2" placeholder="Поле 2">
+                </div>
+                <button type="button" onclick="validateForm()">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Сохраняем исходный цвет фона
+        const originalBgColor = getComputedStyle(document.body).backgroundColor;
+        
+        // Задание 1: Проверка числа больше 18
+        function isOver18(number) {
+            return number > 18;
+        }
+
+        function checkIsOver18() {
+            const input = document.getElementById('input1').value;
+            const number = parseInt(input);
+            const result = isOver18(number);
+            document.getElementById('result1').textContent = `Результат: ${result ? 'число больше 18' : 'число меньше 18'}`;
+        }
+
+        // Задание 2: Проверка числа на четность
+        function isEven(number) {
+            return number % 2 === 0;
+        }
+
+        function checkIsEven() {
+            const input = document.getElementById('input2').value;
+            const number = parseInt(input);
+            const result = isEven(number);
+            document.getElementById('result2').textContent = `Число ${number} ${result ? 'чётное' : 'нечётное'}`;
+        }
+
+        // Задание 3: Перевернуть строку
+        function reverseString(text) {
+            return text.split('').reverse().join('');
+        }
+
+        function reverseInputString() {
+            const input = document.getElementById('input3').value;
+            const result = reverseString(input);
+            document.getElementById('result3').textContent = `Результат: ${result}`;
+        }
+
+        // Задание 4: Проверка на палиндром
+        function isPalindrome(text) {
+            return text === text.split('').reverse().join('');
+        }
+
+        function checkIsPalindrome() {
+            const input = document.getElementById('input4').value;
+            const result = isPalindrome(input);
+            document.getElementById('result4').textContent = `"${input}" ${result ? 'это палиндром' : 'не палиндром'}`;
+        }
+
+        // Задание 5: Сумма первой и последней цифры числа
+        function sumFirstLastDigits(number) {
+            const numStr = String(number);
+            return parseInt(numStr[0]) + parseInt(numStr[numStr.length - 1]);
+        }
+
+        function calculateSumFirstLastDigits() {
+            const input = document.getElementById('input5').value;
+            const number = parseInt(input);
+            const result = sumFirstLastDigits(number);
+            document.getElementById('result5').textContent = `Сумма первой и последней цифры: ${result}`;
+        }
+
+        // Задание 6: Сумма элементов массива от 0 до 10
+        function sumBetweenZeroAndTen(arr) {
+            return arr.filter(x => x > 0 && x < 10).reduce((sum, current) => sum + current, 0);
+        }
+
+        function calculateSumBetweenZeroAndTen() {
+            const input = document.getElementById('input6').value;
+            const arr = input.split(',').map(item => parseInt(item.trim()));
+            const result = sumBetweenZeroAndTen(arr);
+            document.getElementById('result6').textContent = `Сумма элементов от 0 до 10: ${result}`;
+        }
+
+        // Задание 7: Получение уникальных чисел из массива
+        function getUniqueNumbers(arr) {
+            return [...new Set(arr)];
+        }
+
+        function getUnique() {
+            const input = document.getElementById('input7').value;
+            const arr = input.split(',').map(item => parseInt(item.trim()));
+            const result = getUniqueNumbers(arr);
+            document.getElementById('result7').textContent = `Уникальные числа: ${result.join(', ')}`;
+        }
+
+        // Задание 8: Подсчет русских гласных в строке
+        function countRussianVowels(text) {
+            const vowels = ['а', 'я', 'о', 'ё', 'у', 'ю', 'ы', 'и', 'э', 'е'];
+            return text.toLowerCase().split('').filter(char => vowels.includes(char)).length;
+        }
+
+        function countVowels() {
+            const input = document.getElementById('input8').value;
+            const result = countRussianVowels(input);
+            document.getElementById('result8').textContent = `Количество гласных: ${result}`;
+        }
+
+        // Задание 9: Сортировка массива чисел
+        function bubbleSort(arr) {
+            const result = [...arr];
+            const n = result.length;
+            
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (result[j] > result[j + 1]) {
+                        // Обмен элементов
+                        [result[j], result[j + 1]] = [result[j + 1], result[j]];
+                    }
+                }
+            }
+            
+            return result;
+        }
+
+        function sortArray() {
+            const input = document.getElementById('input9').value;
+            const arr = input.split(',').map(item => parseInt(item.trim()));
+            const result = bubbleSort(arr);
+            document.getElementById('result9').textContent = `Отсортированный массив: ${result.join(', ')}`;
+        }
+
+        // Задание 10: Изменение текста заголовка
+        function changeHeading() {
+            const heading = document.getElementById('heading10');
+            if (heading.textContent === 'Привет, мир') {
+                heading.textContent = 'Пока, мир';
+            } else {
+                heading.textContent = 'Привет, мир';
+            }
+            heading.classList.toggle('changed');
+        }
+        
+        // Задание 11: Изменение цвета фона
+        function changeBackgroundColor() {
+            const color = document.getElementById('colorInput').value;
+            document.body.style.backgroundColor = color;
+        }
+        
+        // Функция сброса цвета фона
+        function resetBackgroundColor() {
+            document.body.style.backgroundColor = originalBgColor;
+            document.getElementById('colorInput').value = '';
+        }
+        
+        // Задание 12: Валидация формы
+        function validateForm() {
+            const field1 = document.getElementById('field1').value;
+            const field2 = document.getElementById('field2').value;
+            
+            if (!field1 || !field2) {
+                alert('Ошибка: оба поля должны быть заполнены!');
+            } else {
+                alert('Форма успешно отправлена!');
+                document.getElementById('validationForm').reset();
+            }
+        }
+    </script>
+</body>
+</html>
